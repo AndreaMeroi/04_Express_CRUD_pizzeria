@@ -82,13 +82,80 @@ const store = (req, res) => {
 //UPDATE
 
 const update = (req, res) => {
-    res.send('Update the entire single pizza with ID:' + req.params.id)
+
+    //destrutturazione per trovare l'ID
+
+    const { id } = req.params
+
+    console.log(id);
+
+    const pizza = menu.find(item => item.id === parseInt(id))
+    console.log(pizza);
+
+    // set a res in case of item missing
+
+    if (!pizza) {
+
+        //concateno status(404) per modificare il codice i postman che altrimenti continuerebbe a proporre 200 OK
+
+        res.status(404).json({
+            error: true,
+            message: 'Resource not found'
+        })
+    }
+    // aggiorno la pizza 
+
+    const { name, image, ingredients } = req.body
+
+    pizza.name = name
+    pizza.image = image
+    pizza.ingredients = ingredients
+
+    console.log(menu);
+
+
+    res.json(pizza)
+
 }
+
 
 // MODIFY
 
 const modify = (req, res) => {
-    res.send('Partial update for the single pizza with ID: ')
+
+    //destrutturazione per trovare l'ID
+
+    const { id } = req.params
+
+    console.log(id);
+
+    const pizza = menu.find(item => item.id === parseInt(id))
+    console.log(pizza);
+
+    // set a res in case of item missing
+
+    if (!pizza) {
+
+        //concateno status(404) per modificare il codice i postman che altrimenti continuerebbe a proporre 200 OK
+
+        res.status(404).json({
+            error: true,
+            message: 'Resource not found'
+        })
+    }
+    // aggiorno la pizza 
+
+    const { name, image, ingredients } = req.body
+
+    pizza.name = name
+    pizza.image = image
+    pizza.ingredients = ingredients
+
+    console.log(menu);
+
+
+    res.json(pizza)
+
 }
 
 //DESTROY
