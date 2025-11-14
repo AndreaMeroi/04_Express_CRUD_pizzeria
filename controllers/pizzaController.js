@@ -50,7 +50,34 @@ const show = (req, res) => {
 // STORE
 
 const store = (req, res) => {
-    res.send('Create a new pizza')
+
+    console.log(req.body);
+
+    //genero il nuovo ID
+    const newPizzaID = menu[menu.length - 1].id + 1
+    console.log(newPizzaID);
+
+
+    //destrutturo l'oggetto 
+    const { name, image, ingredients } = req.body
+    //genero il nuovo oggetto
+
+    const newPizza = {
+        id: newPizzaID,
+        name,
+        image,
+        ingredients
+    }
+    console.log(newPizza);
+
+    // pusho il nuovo oggetto
+
+    menu.push(newPizza)
+    console.log(menu);
+
+    //aggiorno lo status code con 201 (resource createde) 
+
+    res.status(201).json(newPizza)
 }
 //UPDATE
 

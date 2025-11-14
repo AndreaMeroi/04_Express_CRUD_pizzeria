@@ -4,8 +4,11 @@ const PORT = 3003
 const pizzasRouter = require('./routes/pizzas')
 const drinksRouter = require('./routes/drinks')
 
+//register static assets
 app.use(express.static('public'))
-
+//register Body Parser for using store route
+app.use(express.json())
+//indico quale porta deve 'ascoltare' il server
 app.listen(PORT, () => {
 
     console.log(`PIZZERIA API server started on http://localhost:${PORT}`);
